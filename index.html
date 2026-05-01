@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Progressive 360 System</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: system-ui, sans-serif;
+      }
+      canvas {
+        display: block;
+      }
+      #overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        cursor: pointer;
+        z-index: 1;
+        user-select: none;
+      }
+      #overlay.hidden {
+        display: none;
+      }
+      #overlay span {
+        padding: 12px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+      }
+      #controls {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+      body.started #controls {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #controls button {
+        padding: 8px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font: inherit;
+        cursor: pointer;
+      }
+      #controls button:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      #controls label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #controls select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: #222;
+        color: #fff;
+        font: inherit;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="overlay"><span>Click to start playback (drag to pan)</span></div>
+    <div id="controls">
+      <button type="button" id="btnPlayPause" aria-pressed="false">Pause</button>
+      <label>
+        Playback speed
+        <select id="speedSelect" title="Playback speed">
+          <option value="0.25">0.25×</option>
+          <option value="0.5">0.5×</option>
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+      </label>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
