@@ -1,3 +1,9 @@
 # Large media — attach `video_assets.tar.gz` via GitHub Releases; do not commit.
 video.mp4
 
+# Local chunk / tile 资源（manifest、dst_video_folder 等）
+video_1s/
+
+# Python
+__pycache__/
+
